@@ -8,7 +8,7 @@ export const IS_ROOT = (node_id) => `
 SELECT
 COUNT(li0."id")
 FROM
-"links_index" as li0
+"links_indexes" as li0
 WHERE
 li0."list_node_id" = ${node_id} AND
 li0."index_node_id" = ${node_id} AND
@@ -49,6 +49,29 @@ export const T_NODE_INSERT_UP = `
 
 export const T_NODE_INSERT_DOWN = `
   DROP TRIGGER IF EXISTS nodes__on_insert__trigger ON "nodes";
+`;
+
+export const F_NODE_DELETE_UP = `
+  CREATE OR REPLACE FUNCTION nodes__on_delete__function()
+  RETURNS TRIGGER AS $trigger$
+  BEGIN
+    DELETE FROM "links"
+    WHERE "source_id" = OLD."id";
+    RETURN OLD;
+  END;
+  $trigger$ language 'plpgsql';
+`;
+
+export const F_NODE_DELETE_DOWN = `
+  DROP FUNCTION IF EXISTS nodes__on_delete__function;
+`;
+
+export const T_NODE_DELETE_UP = `
+  CREATE TRIGGER nodes__on_delete__trigger AFTER INSERT ON "nodes" FOR EACH ROW EXECUTE PROCEDURE nodes__on_delete__function();
+`;
+
+export const T_NODE_DELETE_DOWN = `
+  DROP TRIGGER IF EXISTS nodes__on_delete__trigger ON "nodes";
 `;
 
 export const F_LINK_INSERT_UP = `
@@ -440,12 +463,12 @@ export const F_LINK_DELETE_UP = `
         r."targetCount" = r."count"
       )
       LOOP
-        DELETE FROM "links_index"
+        DELETE FROM "links_indexes"
         WHERE
         "list_id" = targetListId."list_id" AND
         "depth" <= sourceIgnoreListId."depth";
         
-        UPDATE "links_index"
+        UPDATE "links_indexes"
         SET
         "depth" = "depth" - sourceIgnoreListId."depth" - 1
         WHERE
@@ -473,6 +496,8 @@ export const T_LINK_DELETE_DOWN = `
 export async function up(knex: Knex) {
   await knex.raw(F_NODE_INSERT_UP);
   await knex.raw(T_NODE_INSERT_UP);
+  await knex.raw(F_NODE_DELETE_UP);
+  await knex.raw(T_NODE_DELETE_UP);
   await knex.raw(F_LINK_INSERT_UP);
   await knex.raw(T_LINK_INSERT_UP);
   await knex.raw(F_LINK_DELETE_UP);
@@ -482,6 +507,8 @@ export async function up(knex: Knex) {
 export async function down(knex: Knex) {
   await knex.raw(T_NODE_INSERT_DOWN);
   await knex.raw(F_NODE_INSERT_DOWN);
+  await knex.raw(T_NODE_DELETE_DOWN);
+  await knex.raw(F_NODE_DELETE_DOWN);
   await knex.raw(T_LINK_INSERT_DOWN);
   await knex.raw(F_LINK_INSERT_DOWN);
   await knex.raw(T_LINK_DELETE_DOWN);

@@ -80,23 +80,15 @@ export async function up(knex: Knex) {
 
     table
       .text('source_id')
-      .notNullable()
-      .references('id')
-      .inTable('nodes');
+      .notNullable();
     table
       .text('target_id')
-      .notNullable()
-      .references('id')
-      .inTable('nodes');
+      .notNullable();
     table
-      .text('node_id')
-      .references('id')
-      .inTable('nodes');
+      .text('node_id');
     table
       .integer('type_id')
-      .notNullable()
-      .references('id')
-      .inTable('links_types');
+      .notNullable();
   });
 
   // links_indexes
@@ -108,18 +100,12 @@ export async function up(knex: Knex) {
 
     table
       .text('list_node_id')
-      .notNullable()
-      .references('id')
-      .inTable('nodes');
+      .notNullable();
     table
       .text('index_node_id')
-      .notNullable()
-      .references('id')
-      .inTable('nodes');
+      .notNullable();
     table
-      .integer('index_link_id')
-      .references('id')
-      .inTable('links');
+      .integer('index_link_id');
     table
       .text('list_id')
       .notNullable();
@@ -136,20 +122,14 @@ export async function up(knex: Knex) {
       .primary();
 
     table
-      .integer('prop_type_id')
-      .references('id')
-      .inTable('props_types');
+      .integer('prop_type_id');
     table
       .text('prop_node_id')
-      .notNullable()
-      .references('id')
-      .inTable('nodes');
+      .notNullable();
 
     table
       .integer('node_type_id')
-      .notNullable()
-      .references('id')
-      .inTable('nodes_types');
+      .notNullable();
   });
 }
 
