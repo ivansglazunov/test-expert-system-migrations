@@ -61,6 +61,20 @@ export async function up(knex: Knex) {
 
   defineForeignRelation(md, 'nodes_props_types', 'node_type_id', 'node_type', 'nodes_types', 'id', 'nodes_props_types');
 
+  // nodes_props_strings
+  debug('nodes_props_strings');
+  defineTable(md, 'nodes_props_strings');
+
+  defineForeignRelation(md, 'nodes_props_strings', 'prop_type_id', 'prop_type', 'props_types', 'id', 'nodes_props_strings');
+  defineForeignRelation(md, 'nodes_props_strings', 'prop_node_id', 'prop_node', 'nodes', 'id', 'nodes_props_strings');
+
+  // nodes_props_numbers
+  debug('nodes_props_numbers');
+  defineTable(md, 'nodes_props_numbers');
+
+  defineForeignRelation(md, 'nodes_props_numbers', 'prop_type_id', 'prop_type', 'props_types', 'id', 'nodes_props_numbers');
+  defineForeignRelation(md, 'nodes_props_numbers', 'prop_node_id', 'prop_node', 'nodes', 'id', 'nodes_props_numbers');
+
   debug('replace_metadata');
   await replace_metadata(md);
 }

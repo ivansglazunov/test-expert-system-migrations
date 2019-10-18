@@ -131,10 +131,66 @@ export async function up(knex: Knex) {
       .integer('node_type_id')
       .notNullable();
   });
+
+  // nodes_props_strings
+  debug('nodes_props_strings');
+  await knex.schema.createTable('nodes_props_strings', (table) => {
+    table
+      .increments('id')
+      .primary();
+
+    table
+      .integer('prop_type_id');
+    table
+      .text('prop_node_id')
+      .notNullable();
+
+    table
+      .text('value')
+      .notNullable();
+    table
+      .text('format')
+      .notNullable();
+    table
+      .text('type')
+      .notNullable();
+  });
+
+  // nodes_props_numbers
+  debug('nodes_props_numbers');
+  await knex.schema.createTable('nodes_props_numbers', (table) => {
+    table
+      .increments('id')
+      .primary();
+
+    table
+      .integer('prop_type_id');
+    table
+      .text('prop_node_id')
+      .notNullable();
+
+    table
+      .text('value')
+      .notNullable();
+    table
+      .text('format')
+      .notNullable();
+    table
+      .text('type')
+      .notNullable();
+  });
 }
 
 export async function down(knex: Knex) {
   debug('down');
+
+  // nodes_props_numbers
+  debug('nodes_props_numbers');
+  await knex.schema.dropTableIfExists('nodes_props_numbers');
+
+  // nodes_props_strings
+  debug('nodes_props_strings');
+  await knex.schema.dropTableIfExists('nodes_props_strings');
 
   // nodes_props_types
   debug('nodes_props_types');
