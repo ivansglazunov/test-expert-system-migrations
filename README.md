@@ -1,4 +1,4 @@
-# sandbox_data
+# sandbox_hasura_migrations
 
 ## env
 
