@@ -170,7 +170,7 @@ export async function up(knex: Knex) {
       .notNullable();
 
     table
-      .text('value')
+      .integer('value')
       .notNullable();
     table
       .text('format')
