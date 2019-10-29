@@ -1,0 +1,68 @@
+{
+  "hardware": [
+    {
+      "symptom": "desktop computer or laptop won't turn on",
+      "solutions": [
+        "check to make sure that the power cable is plugged into a working outlet or power strip",
+        "try using another power cable if you have one handy",
+        "check and make sure that the power button isn't stuck",
+        "if it's a laptop, disconnect the power adapter from the laptop, and then remove the battery as well. wait 60 seconds and then reinsert the battery and also reconnect the power adapter. then try to turn the laptop on once again"
+      ]
+    },
+    {
+      "symptom": "the monitor won't turn on or it simply shows no picture",
+      "solutions": [
+        "if the monitor has a power indicator light and it isn't on, check and make sure the monitor is plugged in",
+        "if the monitor has a power indicator light and it's on, but you still have no picture, check and make sure that the video cable is connected to the cpu firmly",
+        "if the monitor power indicator light is green, but you still can't see a picture on the monitor, turn the computer off by pressing and holding the power button until it turns off. once it's turned off, turn it right back on by pressing the power button on the cpu. if you suddenly see a picture you may be having an issue with the display settings in windows. the resolution may be set too high or the monitor refresh rate may be set improperly. start the system in \"safe mode\" and make any needed display setting changes that you may require. start with the lowest resolution and refresh rate when you make the setting changes",
+        "if you still don't see a picture after the restart and the power indicator on the monitor is green, either hold a lamp or flashlight right in front of the monitor. if you can see a picture in the background with the light on it then the monitor's backlighting may be malfunctioning and the screen will need to be replaced"
+      ]
+    },
+    {
+      "symptom": "the keyboard or mouse quit working",
+      "solutions": [
+        "if the devices have usb connections, disconnect the keyboard or mouse and then reconnect them into different usb ports than they were connect to before",
+        "if the keyboard or mouse has a ps/2 connection, unplug them and then plug them right back in. if that doesn't work, restart the computer. you may have to press and hold the power button until the computer turns off if you haven't any access to a pointing device or a working keyboard"
+      ]
+    },
+    {
+      "symptom": "the sound doesn't work",
+      "solutions": [
+        "check and make sure that the speakers are turned on and that they have power",
+        "check and make sure that the speakers are plugged into the correct audio jack. it should be color coded and the correct audio jack will most likely have green around it",
+        "check and make sure that the volume is turned up and isn't muted within windows"
+      ]
+    }
+  ],
+  "windows": [
+    {
+      "symptom": "the windows start button is gone",
+      "solutions": [
+        "hover your pointer around the area where the task bar was originally. if it reappears, right click the task bar and unselect \"auto-hide task bar\"",
+        "press the \"windows key\" to access the \"start menu\"",
+        "if the task bar has moved, drag and drop it from it's current location back to where you want it to be"
+      ]
+    },
+    {
+      "symptom": "your desktop icons are out of order",
+      "solutions": [
+        "right click in any open area on the desktop and depending on your version of windows, select \"view\" and then make any needed changes to the icon settings"
+      ]
+    },
+    {
+      "symptom": "you're missing a file or you accidentally deleted a file",
+      "solutions": [
+        "check the \"recycle bin\" for the missing file. and if the file is there, simply restore it",
+        "check any file folders that may be close to where the missing file was originally located, because you may have accidentally drag and dropped the file into another file folder"
+      ]
+    }
+  ],
+  "internet": [
+    {
+      "symptom": "the text in your web browser is too large or small",
+      "solutions": [
+        "while pressing the \"ctrl\" key, use the mouse wheel to either shrink or enlarge the web browser text"
+      ]
+    }
+  ]
+}

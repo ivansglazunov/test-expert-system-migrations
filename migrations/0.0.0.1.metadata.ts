@@ -15,65 +15,15 @@ export async function up(knex: Knex) {
 
   const md = await export_metadata();
 
-  // _sandbox
-  debug('_sandbox');
-  defineTable(md, '_sandbox');
+  // symptoms
+  debug('symptoms');
+  defineTable(md, 'symptoms');
 
-  // nodes
-  debug('nodes');
-  defineTable(md, 'nodes');
+  // solutions
+  debug('solutions');
+  defineTable(md, 'solutions');
 
-  // nodes_types
-  debug('nodes_types');
-  defineTable(md, 'nodes_types');
-
-  // links_types
-  debug('links_types');
-  defineTable(md, 'links_types');
-
-  // props_types
-  debug('props_types');
-  defineTable(md, 'props_types');
-
-  // links
-  debug('links');
-  defineTable(md, 'links');
-
-  defineForeignRelation(md, 'links', 'source_id', 'source', 'nodes', 'id', 'links_by_source');
-  defineForeignRelation(md, 'links', 'target_id', 'target', 'nodes', 'id', 'links_by_target');
-  defineForeignRelation(md, 'links', 'node_id', 'node', 'nodes', 'id', 'links_by_node');
-  defineForeignRelation(md, 'links', 'type_id', 'link_type', 'links_types', 'id', 'links');
-
-  // links_indexes
-  debug('links_indexes');
-  defineTable(md, 'links_indexes');
-
-  defineForeignRelation(md, 'links_indexes', 'list_node_id', 'list_node', 'nodes', 'id', 'links_indexes_by_list_node');
-  defineForeignRelation(md, 'links_indexes', 'index_node_id', 'index_node', 'nodes', 'id', 'links_indexes_by_index_node');
-  defineForeignRelation(md, 'links_indexes', 'index_link_id', 'index_link', 'links', 'id', 'links_indexes_by_index_link');
-
-  // nodes_props_types
-  debug('nodes_props_types');
-  defineTable(md, 'nodes_props_types');
-
-  defineForeignRelation(md, 'nodes_props_types', 'prop_type_id', 'prop_type', 'props_types', 'id', 'nodes_props_types');
-  defineForeignRelation(md, 'nodes_props_types', 'prop_node_id', 'prop_node', 'nodes', 'id', 'nodes_props_types');
-
-  defineForeignRelation(md, 'nodes_props_types', 'node_type_id', 'node_type', 'nodes_types', 'id', 'nodes_props_types');
-
-  // nodes_props_strings
-  debug('nodes_props_strings');
-  defineTable(md, 'nodes_props_strings');
-
-  defineForeignRelation(md, 'nodes_props_strings', 'prop_type_id', 'prop_type', 'props_types', 'id', 'nodes_props_strings');
-  defineForeignRelation(md, 'nodes_props_strings', 'prop_node_id', 'prop_node', 'nodes', 'id', 'nodes_props_strings');
-
-  // nodes_props_numbers
-  debug('nodes_props_numbers');
-  defineTable(md, 'nodes_props_numbers');
-
-  defineForeignRelation(md, 'nodes_props_numbers', 'prop_type_id', 'prop_type', 'props_types', 'id', 'nodes_props_numbers');
-  defineForeignRelation(md, 'nodes_props_numbers', 'prop_node_id', 'prop_node', 'nodes', 'id', 'nodes_props_numbers');
+  defineForeignRelation(md, 'solutions', 'symptom_id', 'symptom', 'symptoms', 'id', 'solutions');
 
   debug('replace_metadata');
   await replace_metadata(md);
@@ -84,37 +34,13 @@ export async function down(knex: Knex) {
 
   const md = await export_metadata();
 
-  // nodes_props_types
-  debug('nodes_props_types');
-  deleteTable(md, 'nodes_props_types');
+  // symptoms
+  debug('symptoms');
+  deleteTable(md, 'symptoms');
 
-  // links_indexes
-  debug('links_indexes');
-  deleteTable(md, 'links_indexes');
-
-  // links
-  debug('links');
-  deleteTable(md, 'links');
-
-  // props_types
-  debug('props_types');
-  deleteTable(md, 'props_types');
-
-  // links_types
-  debug('links_types');
-  deleteTable(md, 'links_types');
-
-  // nodes_types
-  debug('nodes_types');
-  deleteTable(md, 'nodes_types');
-
-  // nodes
-  debug('nodes');
-  deleteTable(md, 'nodes');
-
-  // _sandbox
-  debug('_sandbox');
-  deleteTable(md, '_sandbox');
+  // solutions
+  debug('solutions');
+  deleteTable(md, 'solutions');
 
   debug('replace_metadata');
   await replace_metadata(md);
